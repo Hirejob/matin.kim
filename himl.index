@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matin Kim 試穿員計畫 | 免費拿新品,累積穿搭影響力</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+            background: #FFFFFF;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://lurl.cc/igoRn');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.75);
+            z-index: 1;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-headline {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subheading {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            color: #4A4A4A;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #000000;
+            color: #FFFFFF;
+            padding: 1.25rem 3rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background: #2A2A2A;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-body {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: #2A2A2A;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .feature-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-body {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #4A4A4A;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, #E8DED2 0%, #D4C4B0 100%);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            color: #2A2A2A;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .feature-list li {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: #2A2A2A;
+            padding: 1rem 0;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: '・';
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #000000;
+        }
+
+        .compensation-section {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .compensation-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .compensation-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .compensation-item {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .big-emphasis {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .final-cta-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
+            padding: 5rem 2rem;
+        }
+
+        .brand-name {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        .final-cta-button {
+            display: inline-block;
+            background: #000000;
+            color: #FFFFFF;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .final-cta-button:hover {
+            background: #2A2A2A;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 90vh;
+                padding: 1.5rem;
+            }
+
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .compensation-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .feature-list li {
+                font-size: 1rem;
+            }
+        }
+
+        .alternate-bg {
+            background: #F5F5F5;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <img src="https://i.ibb.co/Hf7YWwzs/https-hypebeast-com-wp-content-blogs-dir-6-files-2024-12-30-katseye-coach-matin-kim-collaboration.avif" alt="Matin Kim Background" class="hero-background">
+        <div class="hero-content">
+            <h1 class="hero-headline">為什麼很多人都在搶 Matin Kim 試穿員?</h1>
+            <p class="hero-subheading">對喜歡穿搭的人來說,這不只是一份兼職,而是可以免費拿衣服、累積穿搭曝光的機會</p>
+            <a href="https://lin.ee/pJNPrc7" class="cta-button">💬 立即加入試穿計畫</a>
+        </div>
+    </section>
+
+    <section class="image-section">
+        <img src="https://api.kuse.ai/api/folder/v1/file/3064dcce9e972b161c11044ee70cb61b8591e420cb79fc6b230ae0cd08fa15b9_2055434.png" alt="Matin Kim Fashion">
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">👗 你可以得到什麼?</h2>
+        <p class="section-body">很多人花錢買衣服拍穿搭,但在 Matin Kim,你可以 邊試穿、邊拍照,衣服還能帶回家</p>
+    </section>
+
+    <section class="content-section alternate-bg">
+        <div class="feature-card fade-in">
+            <h3 class="feature-title">✨ 新品直接送你</h3>
+            <p class="feature-body">你不再只是追隨潮流,而是成為第一批體驗潮流的人</p>
+            <p class="feature-body">每套參與試穿測試的新品都會直接贈送給你</p>
+            <p class="feature-body">讓你在正式上市前,就能擁有品牌最新款服飾</p>
+            <div class="highlight-text">這不只是試穿👗,更像是 品牌與穿搭愛好者之間的合作體驗</div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="feature-card fade-in">
+            <h3 class="feature-title">✨ 零成本經營自媒體</h3>
+            <p class="feature-body">很多人經營穿搭帳號,其實最大的成本就是「衣服」</p>
+            <p class="feature-body">🔥加入試穿計畫後,你可以直接使用品牌新品拍攝穿搭內容</p>
+            <p class="feature-body">為自己的 IG / Threads / 小紅書 建立更有質感的社群版面</p>
+            <p class="feature-body">省下買衣服的預算,也能讓你的內容看起來更專業、更有品牌感</p>
+        </div>
+    </section>
+
+    <section class="image-section">
+        <img src="https://api.kuse.ai/api/folder/v1/file/ba36cc96a9d9ab958a3b87a7187e403736b0367111819fed9464e7d5e7f86709_2055435.png" alt="Matin Kim Lifestyle">
+    </section>
+
+    <section class="content-section alternate-bg">
+        <div class="feature-card fade-in">
+            <h3 class="feature-title">✨ 不限地點、不需要棚拍</h3>
+            <p class="feature-body">這不是傳統模特兒拍攝</p>
+            <p class="feature-body">只要你有鏡頭、有自信展現自己的風格</p>
+            <p class="feature-body">家裡、街頭、咖啡廳、甚至旅行途中,都可以成為你的穿搭舞台</p>
+            <p class="feature-body">拍攝完成後,透過雲端回傳即可,不需要往返攝影棚或固定場地</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="feature-card fade-in">
+            <h3 class="feature-title">✨ 從試穿到品牌合作的機會</h3>
+            <p class="feature-body">隨著品牌與計畫的成長,表現穩定且風格鮮明的夥伴,有機會參與:</p>
+            <ul class="feature-list">
+                <li>品牌聯名企劃</li>
+                <li>官方形象拍攝</li>
+                <li>線下快閃活動</li>
+                <li>品牌社群合作</li>
+            </ul>
+            <p class="feature-body">讓你的穿搭不只停留在社群分享,而是逐步累積 品牌合作與個人影響力</p>
+        </div>
+    </section>
+
+    <section class="compensation-section">
+        <h2 class="compensation-title">💵 試穿酬勞</h2>
+        <div class="compensation-box">
+            <p class="compensation-item">每套新品試穿 $560 TWD</p>
+            <p class="compensation-item">當月完成指定件數,再加碼 $3,000 獎金</p>
+        </div>
+        <p class="big-emphasis">🎁 最重要的是:試穿完的衣服,全部送你</p>
+    </section>
+
+    <section class="final-cta-section">
+        <h2 class="brand-name">Matin Kim</h2>
+        <a href="https://lin.ee/pJNPrc7" class="final-cta-button">👉 現在加入試穿員計畫</a>
+    </section>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
